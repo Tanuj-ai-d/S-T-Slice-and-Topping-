@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>S &amp; T (Slice and Topping) — Where Every Slice Belongs</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Nunito:wght@600;800&display=swap" rel="stylesheet">
+<style>
+  :root { --cream:#FDF6E9; --ink:#3B2314; --red:#D93829; --green:#5B8C3E; --gold:#F7C948; --card:#FFFDF9; }
+  * { box-sizing:border-box; margin:0; }
+  body { font-family:Nunito,sans-serif; background:var(--cream); color:var(--ink); }
+  h1,h2,h3,.btn,nav a { font-family:Fredoka,sans-serif; }
+  .wrap { max-width:1000px; margin:auto; padding:0 16px; }
+  .awning { height:20px; background:repeating-linear-gradient(90deg,var(--red) 0 36px,var(--card) 36px 72px); border-bottom:4px solid var(--ink); }
+  nav { display:flex; justify-content:space-between; align-items:center; padding:12px 16px; border-bottom:4px solid var(--ink); position:sticky; top:0; background:var(--cream); z-index:5; }
+  nav a { color:var(--ink); text-decoration:none; margin-right:14px; font-weight:700; }
+  nav a:hover { color:var(--red); }
+  .logo { font-size:1.5rem; font-weight:700; } .logo span { color:var(--red); }
+  .btn { background:var(--gold); color:var(--ink); border:3px solid var(--ink); border-radius:14px; padding:8px 14px; font-weight:700; cursor:pointer; box-shadow:3px 3px 0 var(--ink); }
+  .btn:active { transform:translate(2px,2px); box-shadow:1px 1px 0 var(--ink); }
+  .btn.red { background:var(--red); color:#fff; }
+  .hero { text-align:center; padding:50px 0 30px; }
+  .hero h1 { font-size:clamp(2.2rem,7vw,4rem); } .hero h1 span { color:var(--red); }
+  .hero p { margin:10px 0 20px; font-size:1.1rem; font-weight:600; }
+  section { padding:30px 0; }
+  h2 { font-size:2rem; margin-bottom:14px; }
+  .filters { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px; }
+  .filters .btn.on { background:var(--ink); color:#fff; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:16px; }
+  .card { background:var(--card); border:3px solid var(--ink); border-radius:20px; padding:16px; box-shadow:4px 4px 0 var(--ink); display:flex; flex-direction:column; gap:8px; }
+  .card .emoji { font-size:3rem; text-align:center; }
+  .card p { font-size:.9rem; flex:1; }
+  .tag { font-size:.7rem; font-weight:800; padding:2px 8px; border:2px solid var(--ink); border-radius:8px; align-self:flex-start; color:#fff; }
+  .veg { background:var(--green); } .nonveg { background:var(--red); } .combo { background:var(--ink); }
+  .row { display:flex; justify-content:space-between; align-items:center; }
+  .price { font-weight:800; font-family:monospace; font-size:1.1rem; }
+  .info { background:var(--card); border:3px solid var(--ink); border-radius:20px; padding:20px; box-shadow:4px 4px 0 var(--ink); line-height:1.8; }
+  .gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:16px; }
+  .shot { border:3px solid var(--ink); border-radius:20px; box-shadow:4px 4px 0 var(--ink); overflow:hidden; background:var(--card); }
+  .shot .pic { aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; font-size:5rem; }
+  .shot .pic img { width:100%; height:100%; object-fit:cover; display:block; }
+  .shot figcaption { padding:10px 12px; font-family:Fredoka,sans-serif; font-weight:700; border-top:3px solid var(--ink); }
+  footer { background:#D28B4E; border-top:4px solid var(--ink); text-align:center; padding:24px; margin-top:30px; font-weight:800; }
+  /* Order drawer */
+  #drawer { position:fixed; top:0; right:-380px; width:360px; max-width:100%; height:100%; background:var(--card); border-left:4px solid var(--ink); padding:16px; transition:right .3s; z-index:10; display:flex; flex-direction:column; }
+  #drawer.open { right:0; }
+  #items { flex:1; overflow:auto; margin:12px 0; }
+  .item { display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:2px dashed #0003; gap:6px; }
+  .item button { width:26px; height:26px; border:2px solid var(--ink); border-radius:8px; background:var(--gold); cursor:pointer; font-weight:800; }
+  #promo { padding:8px; border:2px solid var(--ink); border-radius:10px; width:60%; font-family:inherit; }
+  #toast { position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:var(--ink); color:#fff; padding:10px 18px; border-radius:12px; opacity:0; transition:.3s; pointer-events:none; z-index:20; }
+  #toast.show { opacity:1; }
+</style>
+</head>
+<body>
+
+<div class="awning"></div>
+<nav>
+  <div><span class="logo">S <span>&amp;</span> T</span></div>
+  <div><a href="#menu">Menu</a><a href="#combos">Combos</a><a href="#gallery">Gallery</a><a href="#visit">Visit Us</a>
+    <button class="btn red" onclick="toggleDrawer()">🧾 My Order (<span id="count">0</span>)</button></div>
+</nav>
+
+<div class="wrap">
+  <div class="hero">
+    <h1>Where Every <span>Slice</span> Belongs 🍕</h1>
+    <p>Wood-fired pizzas, garlic bread &amp; combos, fresh from our brick oven in Nagpur.</p>
+    <a class="btn red" href="#menu" style="text-decoration:none;display:inline-block">Order Now</a>
+  </div>
+
+  <section id="menu">
+    <h2>The Recipe Book</h2>
+    <div class="filters" id="filters"></div>
+    <div class="grid" id="menu-grid"></div>
+  </section>
+
+  <section id="combos">
+    <h2>Combos &amp; Deals</h2>
+    <div class="grid" id="combo-grid"></div>
+    <p style="margin-top:12px;font-weight:800">Promo codes: WEEKEND25 (25% off ₹699+) · BDAYTREAT (20% off) · LUNCH150 (₹150 off ₹449+)</p>
+  </section>
+
+  <section id="gallery">
+    <h2>Gallery</h2>
+    <div class="gallery" id="gallery-grid"></div>
+  </section>
+
+  <section id="visit">
+    <h2>Visit Us in Nagpur</h2>
+    <div class="info">
+      📍 Plot 24, Near Traffic Park, WHC Road, Dharampeth, Nagpur 440010<br>
+      📞 <a href="tel:+917122548920">+91 712 254 8920</a> · WhatsApp: +91 98230 45190<br>
+      ⏰ Mon–Thu 12:00 PM – 10:30 PM · Fri–Sun 12:00 PM – 11:30 PM<br>
+      <a href="https://maps.google.com/?q=Dharampeth,+Nagpur" target="_blank" rel="noopener">🧭 Open in Google Maps</a>
+    </div>
+  </section>
+</div>
+
+<footer>© 2026 S &amp; T (Slice and Topping) · Made with 🍅 &amp; 🧀</footer>
+
+<!-- Order drawer -->
+<aside id="drawer">
+  <div class="row"><h2 style="margin:0">My Order</h2><button class="btn" onclick="toggleDrawer()">✕</button></div>
+  <div id="items"></div>
+  <div class="row" style="gap:6px"><input id="promo" placeholder="Promo code"><button class="btn" onclick="applyPromo()">Apply</button></div>
+  <div style="margin:10px 0;line-height:1.7">
+    Subtotal: ₹<span id="sub">0</span><br>
+    Discount: −₹<span id="disc">0</span><br>
+    <b style="font-size:1.2rem">Total: ₹<span id="total">0</span></b>
+  </div>
+  <button class="btn red" onclick="checkout()">Place Order</button>
+</aside>
+<div id="toast"></div>
+
+<script>
+// ---------- DATA (add or edit items here) ----------
+const MENU = [
+  { id:'margherita', name:'Classic Margherita', type:'veg', price:249, emoji:'🍕', desc:'Red sauce, fresh mozzarella & sweet basil.' },
+  { id:'paneer', name:'Paneer Tikka Supreme', type:'veg', price:399, emoji:'🧀', desc:'Tandoori paneer, capsicum, red onion.' },
+  { id:'truffle', name:'Truffle Fungi Feast', type:'veg', price:379, emoji:'🍄', desc:'Garlic herb base, roasted mushrooms & thyme.' },
+  { id:'bbq', name:'Smoky BBQ Chicken', type:'nonveg', price:449, emoji:'🍗', desc:'Hickory BBQ glaze, chicken tikka, caramelized onions.' },
+  { id:'prawns', name:'Coastal Garlic Prawns', type:'nonveg', price:549, emoji:'🦐', desc:'Garlic prawns & anchovy on a white base.' },
+  { id:'pepperoni', name:'Pepperoni & Chorizo', type:'nonveg', price:499, emoji:'🌶️', desc:'Double meat overload with mozzarella.' },
+  { id:'salami', name:'Chicken Sausage & Salami', type:'nonveg', price:469, emoji:'🥓', desc:'Smoky sausage and salami slices.' },
+  { id:'sticks', name:'Herb Garlic Breadsticks', type:'veg', price:149, emoji:'🥖', desc:'Warm, buttery and herby.' },
+  { id:'pullapart', name:'Cheesy Stuffed Garlic Bread', type:'veg', price:199, emoji:'🧈', desc:'Stuffed with molten cheese.' },
+];
+const COMBOS = [
+  { id:'solo', name:'Solo Slice & Sip', type:'combo', price:349, emoji:'🥤', desc:'8" pizza + 2 breadsticks + citrus cooler. Save ₹79!' },
+  { id:'duo', name:'Garlic Bread & Fizzy Duo', type:'combo', price:229, emoji:'🥂', desc:'Garlic bread with two fizzy drinks.' },
+  { id:'feast', name:'Duo Feast Box', type:'combo', price:799, emoji:'📦', desc:'2 pizzas + sides.' },
+  { id:'party', name:'Family Party Platter', type:'combo', price:1299, emoji:'🎉', desc:'3 pizzas for the whole gang.' },
+];
+const PROMOS = {
+  WEEKEND25: { min:699, off: s => Math.round(s * 0.25) },
+  BDAYTREAT: { min:0,   off: s => Math.round(s * 0.20) },
+  LUNCH150:  { min:449, off: s => Math.min(150, s) },
+};
+// Gallery: swap in real photos by adding img:'photos/your-file.jpg' to any item
+const GALLERY = [
+  { emoji:'🍕', caption:'Fresh from the brick oven', bg:'#F7C948' },
+  { emoji:'🧀', caption:'Loaded with melty cheese', bg:'#F4A261' },
+  { emoji:'🥖', caption:'Golden garlic breadsticks', bg:'#E9C46A' },
+  { emoji:'🍗', caption:'Smoky BBQ chicken', bg:'#E76F51' },
+];
+const LABELS = { veg:'Vegetarian', nonveg:'Non-Veg', combo:'Combo' };
+
+// ---------- STATE ----------
+let cart = {};          // { id: {name, price, qty} }
+let promo = null;       // promo code string
+let filter = 'all';
+const $ = id => document.getElementById(id);
+
+// ---------- RENDER ----------
+const cardHTML = p => `
+  <article class="card">
+    <div class="emoji">${p.emoji}</div>
+    <span class="tag ${p.type}">${LABELS[p.type]}</span>
+    <h3>${p.name}</h3><p>${p.desc}</p>
+    <div class="row"><span class="price">₹${p.price}</span>
+    <button class="btn" onclick="add('${p.id}')">+ Add</button></div>
+  </article>`;
+
+function renderMenu() {
+  $('filters').innerHTML = ['all','veg','nonveg'].map(f =>
+    `<button class="btn ${f===filter?'on':''}" onclick="filter='${f}';renderMenu()">${f==='all'?'All':LABELS[f]}</button>`).join('');
+  $('menu-grid').innerHTML = MENU.filter(p => filter==='all' || p.type===filter).map(cardHTML).join('');
+}
+
+function renderCart() {
+  const list = Object.entries(cart);
+  $('count').textContent = list.reduce((n,[,i]) => n + i.qty, 0);
+  $('items').innerHTML = list.length ? list.map(([id,i]) => `
+    <div class="item"><span>${i.name}</span>
+      <span><button onclick="change('${id}',-1)">−</button> ${i.qty} <button onclick="change('${id}',1)">+</button></span>
+      <b>₹${i.price*i.qty}</b></div>`).join('') : '<p>Your ticket is empty 🍕</p>';
+
+  const sub = list.reduce((n,[,i]) => n + i.price*i.qty, 0);
+  const p = PROMOS[promo];
+  const disc = p && sub >= p.min ? p.off(sub) : 0;
+  $('sub').textContent = sub; $('disc').textContent = disc; $('total').textContent = sub - disc;
+}
+
+// ---------- ACTIONS ----------
+function add(id) {
+  const p = [...MENU, ...COMBOS].find(x => x.id === id);
+  cart[id] = cart[id] || { name:p.name, price:p.price, qty:0 };
+  cart[id].qty++;
+  renderCart(); toast(`${p.name} added!`);
+}
+function change(id, d) { cart[id].qty += d; if (cart[id].qty <= 0) delete cart[id]; renderCart(); }
+function applyPromo() {
+  const code = $('promo').value.trim().toUpperCase(), p = PROMOS[code];
+  const sub = +$('sub').textContent;
+  if (!p) return toast('Invalid promo code');
+  if (sub < p.min) return toast(`Needs a minimum order of ₹${p.min}`);
+  promo = code; renderCart(); toast(`${code} applied!`);
+}
+function checkout() {
+  if (!Object.keys(cart).length) return toast('Add something first!');
+  alert(`Thanks! Your order of ₹${$('total').textContent} is being fired in the oven 🔥`);
+  cart = {}; promo = null; $('promo').value = ''; renderCart(); toggleDrawer();
+}
+function toggleDrawer() { $('drawer').classList.toggle('open'); }
+function toast(msg) { const t = $('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 1800); }
+
+// ---------- START ----------
+$('combo-grid').innerHTML = COMBOS.map(cardHTML).join('');
+$('gallery-grid').innerHTML = GALLERY.map(g => `
+  <figure class="shot">
+    <div class="pic" style="background:${g.bg}">${g.img ? `<img src="${g.img}" alt="${g.caption}">` : g.emoji}</div>
+    <figcaption>${g.caption}</figcaption>
+  </figure>`).join('');
+renderMenu(); renderCart();
+</script>
+</body>
+</html>
