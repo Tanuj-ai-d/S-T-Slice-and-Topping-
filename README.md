@@ -1,6 +1,6 @@
 # S & T (Slice and Topping) 🍕
 
-A single-page pizza shop website with a menu, combos, gallery and a working order cart. Built with plain HTML, CSS and JavaScript, so there is nothing to install.
+A single-page pizza shop website with a menu, combos, gallery and a working order cart. Built with plain HTML AND CSS  so there is nothing to install.
 
 ## Features
 
