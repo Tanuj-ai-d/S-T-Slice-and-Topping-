@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>S &amp; T (Slice and Topping) — Where Every Slice Belongs</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Nunito:wght@600;800&display=swap" rel="stylesheet">
+<style>
+  :root { --cream:#FDF6E9; --ink:#3B2314; --red:#D93829; --gold:#F7C948; --card:#FFFDF9; }
+  html { scroll-behavior:smooth; scroll-padding-top:80px; }
+  body { font-family:Nunito,sans-serif; background:var(--cream); color:var(--ink); }
+  h1,h2,h3,.btn,.nav-link,.navbar-brand,.st-head { font-family:Fredoka,sans-serif; }
+  .awning { height:20px; background:repeating-linear-gradient(90deg,var(--red) 0 36px,var(--card) 36px 72px); border-bottom:4px solid var(--ink); }
+  .navbar { background:var(--cream); border-bottom:4px solid var(--ink); }
+  .navbar-brand { font-weight:700; font-size:1.5rem; color:var(--ink); }
+  .navbar-brand span, .hero h1 span { color:var(--red); }
+  .nav-link { color:var(--ink); font-weight:700; }
+  .nav-link:hover { color:var(--red); }
+  .st-btn { --bs-btn-bg:var(--gold); --bs-btn-color:var(--ink); --bs-btn-hover-bg:#f2bb2a; --bs-btn-hover-color:var(--ink);
+    --bs-btn-active-bg:#e9b21f; --bs-btn-active-color:var(--ink); --bs-btn-active-border-color:var(--ink);
+    border:3px solid var(--ink); border-radius:14px; font-weight:700; box-shadow:3px 3px 0 var(--ink); }
+  .st-btn:active { transform:translate(2px,2px); box-shadow:1px 1px 0 var(--ink); }
+  .st-btn.red { --bs-btn-bg:var(--red); --bs-btn-color:#fff; --bs-btn-hover-bg:#bf2f22; --bs-btn-hover-color:#fff; --bs-btn-active-bg:#a8281c; --bs-btn-active-color:#fff; }
+  .hero { padding:50px 0 30px; }
+  .hero h1 { font-size:clamp(2.2rem,7vw,4rem); font-weight:700; }
+  h2 { font-weight:700; font-size:2rem; }
+  .st-card { background:var(--card); border:3px solid var(--ink); border-radius:20px; box-shadow:4px 4px 0 var(--ink); }
+  .btn-check:checked + .btn.st-btn { background:var(--ink); color:#fff; }
+  /* CSS-only menu filter (no JavaScript) */
+  #f-veg:checked ~ .menu-grid .item:not(.veg),
+  #f-nonveg:checked ~ .menu-grid .item:not(.nonveg) { display:none; }
+  .site-footer { background:#D28B4E; border-top:4px solid var(--ink); font-weight:800; }
+  .promo { background:var(--gold); border:3px solid var(--ink); border-radius:14px; }
+</style>
+</head>
+<body>
+
+<div class="awning"></div>
+<nav class="navbar navbar-expand-md sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="#top">S <span>&amp;</span> T</a>
+    <button class="navbar-toggler border-dark border-2" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="nav">
+      <ul class="navbar-nav align-items-md-center gap-md-2">
+        <li class="nav-item"><a class="nav-link" href="#menu">Menu</a></li>
+        <li class="nav-item"><a class="nav-link" href="#combos">Combos</a></li>
+        <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="#visit">Visit Us</a></li>
+        <li class="nav-item"><a class="btn st-btn red" href="https://wa.me/919823045190" target="_blank" rel="noopener">🧾 Order on WhatsApp</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main class="container" id="top">
+  <div class="hero text-center">
+    <h1>Where Every <span>Slice</span> Belongs 🍕</h1>
+    <p class="fs-5 fw-semibold my-3">Wood-fired pizzas, garlic bread &amp; combos, fresh from our brick oven in Nagpur.</p>
+    <a class="btn st-btn red" href="#menu">Order Now</a>
+  </div>
+
+  <section id="menu" class="py-4">
+    <h2 class="mb-3">The Recipe Book</h2>
+    <input type="radio" class="btn-check" name="filter" id="f-all" checked>
+    <input type="radio" class="btn-check" name="filter" id="f-veg">
+    <input type="radio" class="btn-check" name="filter" id="f-nonveg">
+    <div class="d-flex flex-wrap gap-2 mb-3">
+      <label class="btn st-btn" for="f-all">All</label>
+      <label class="btn st-btn" for="f-veg">Vegetarian</label>
+      <label class="btn st-btn" for="f-nonveg">Non-Veg</label>
+    </div>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4 menu-grid">
+      <div class="col item veg">
+        <article class="card h-100 st-card">
+          <div class="card-body d-flex flex-column gap-2">
+            <div class="display-3 text-center">🍕</div>
+            <span class="badge text-bg-success align-self-start border border-2 border-dark">Vegetarian</span>
+            <h3 class="h5 card-title">Classic Margherita</h3>
+            <p class="card-text small flex-grow-1">Red sauce, fresh mozzarella &amp; sweet basil.</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="fw-bold font-monospace fs-5">₹249</span>
+              <a class="btn st-btn" href="https://wa.me/919823045190?text=Hi%2C%20I%20would%20like%20to%20order%3A%20Classic%20Margherita" target="_blank" rel="noopener">Order</a>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="col item veg">
+        <article class="card h-100 st-card">
+          <div class="card-body d-flex flex-column gap-2">
+            <div class="display-3 text-center">🧀</div>
+            <span class="badge text-bg-success align-self-start border border-2 border-dark">Vegetarian</span>
+            <h3 class="h5 card-title">Paneer Tikka Supreme</h3>
+            <p class="card-text small flex-grow-1">Tandoori paneer, capsicum, red onion.</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="fw-bold font-monospace fs-5">₹399</span>
+              <a class="btn st-btn" href="https://wa.me/919823045190?text=Hi%2C%20I%20would%20like%20to%20order%3A%20Paneer%20Tikka%20Supreme" target="_blank" rel="noopener">Order</a>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="col item veg">
+        <article class="card h-100 st-card">
+          <div class="card-body d-flex flex-column gap-2">
+            <div class="display-3 text-center">🍄</div>
+            <span class="badge text-bg-success align-self-start border border-2 border-dark">Vegetarian</span>
+            <h3 class="h5 card-title">Truffle Fungi Feast</h3>
+            <p class="card-text small flex-grow-1">Garlic herb base, roasted mushrooms &amp; thyme.</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="fw-bold font-monospace fs-5">₹379</span>
+              <a class="btn st-btn" href="https://wa.me/919823045190?text=Hi%2C%20I%20would%20like%20to%20order%3A%20Truffle%20Fungi%20Feast" target="_blank" rel="noopener">Order</a>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="col item nonveg">
+        <article class="card h-100 st-card">
+          <div class="card-body d-flex flex-column gap-2">
+            <div class="display-3 text-center">🍗</div>
+            <span class="badge text-bg-danger align-self-start border border-2 border-dark">Non-Veg</span>
+            <h3 class="h5 card-title">Smoky BBQ Chicken</h3>
+            <p class="card-text small flex-grow-1">Hickory BBQ glaze, chicken tikka, caramelized onions.</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="fw-bold font-monospace fs-5">₹449</span>
+              <a class="btn st-btn" href="https://wa.me/919823045190?text=Hi%2C%20I%20would%20like%20to%20order%3A%20Smoky%20BBQ%20Chicken" target="_blank" rel="noopener">Order</a>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="col item nonveg">
+        <article class="card h-100 st-card">
+          <div class="card-body d-flex flex-column gap-2">
+            <div class="display-3 text-center">🦐</div>
+            <span class="badge text-bg-danger align-self-start border border-2 border-dark">Non-Veg</span>
+            <h3 class="h5 card-title">Coastal Garlic Prawns</h3>
+            <p class="card-text small flex-grow-1">Garlic prawns &amp; anchovy on a white base.</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="fw-bold font-monospace fs-5">₹549</span>
+              <a class="btn st-btn" href="https://wa.me/919823045190?text=Hi%2C%20I%20would%20like%20to%20order%3A%20Coastal%20Garlic%20Prawns" target="_blank" rel="noopener">Order</a>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="col item nonveg">
+        <article class="card h-100 st-card">
+          <div class="card-body d-flex flex-column gap-2">
+            <div class="display-3 text-center">🌶️</div>
+            <span class="badge text-bg-danger align-self-start border border-2 border-dark">Non-Veg</span>
+            <h3 class="h5 card-title">Pepperoni &amp; Chorizo</h3>
+            <p class="card-text small flex-grow-1">Double meat overload with mozzarella.</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="fw-bold font-monospace fs-5">₹499</span>
+              <a class="btn st-btn" href="https://wa.me/919823045190?text=Hi%2C%20I%20would%20like%20to%20order%3A%20Pepperoni%20%26%20Chorizo" target="_blank" rel="noopener">Order</a>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="col item nonveg">
+        <article class="card h-100 st-card">
+          <div class="card-body d-flex flex-column gap-2">
+            <div class="display-3 text-center">🥓</div>
+            <span class="badge text-bg-danger align-self-start border border-2 border-dark">Non-Veg</span>
+            <h3 class="h5 card-title">Chicken Sausage &amp; Salami</h3>
+            <p class="card-text small flex-grow-1">Smoky sausage and salami slices.</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="fw-bold font-monospace fs-5">₹469</span>
+              <a class="btn st-btn" href="https://wa.me/919823045190?text=Hi%2C%20I%20would%20like%20to%20order%3A%20Chicken%20Sausage%20%26%20Salami" target="_blank" rel="noopener">Order</a>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="col item veg">
+        <article class="card h-100 st-card">
+          <div class="card-body d-flex flex-column gap-2">
+            <div class="display-3 text-center">🥖</div>
+            <span class="badge text-bg-success align-self-start border border-2 border-dark">Vegetarian</span>
+            <h3 class="h5 card-title">Herb Garlic Breadsticks</h3>
+            <p class="card-text small flex-grow-1">Warm, buttery and herby.</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="fw-bold font-monospace fs-5">₹149</span>
+              <a class="btn st-btn" href="https://wa.me/919823045190?text=Hi%2C%20I%20would%20like%20to%20order%3A%20Herb%20Garlic%20Breadsticks" target="_blank" rel="noopener">Order</a>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="col item veg">
+        <article class="card h-100 st-card">
+          <div class="card-body d-flex flex-column gap-2">
+            <div class="display-3 text-center">🧈</div>
+            <span class="badge text-bg-success align-self-start border border-2 border-dark">Vegetarian</span>
+            <h3 class="h5 card-title">Cheesy Stuffed Garlic Bread</h3>
+            <p class="card-text small flex-grow-1">Stuffed with molten cheese.</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="fw-bold font-monospace fs-5">₹199</span>
+              <a class="btn st-btn" href="https://wa.me/919823045190?text=Hi%2C%20I%20would%20like%20to%20order%3A%20Cheesy%20Stuffed%20Garlic%20Bread" target="_blank" rel="noopener">Order</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="combos" class="py-4">
+    <h2 class="mb-3">Combos &amp; Deals</h2>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
+      <div class="col item combo">
+        <article class="card h-100 st-card">
+          <div class="card-body d-flex flex-column gap-2">
+            <div class="display-3 text-center">🥤</div>
+            <span class="badge text-bg-dark align-self-start border border-2 border-dark">Combo</span>
+            <h3 class="h5 card-title">Solo Slice &amp; Sip</h3>
+            <p class="card-text small flex-grow-1">8" pizza + 2 breadsticks + citrus cooler. Save ₹79!</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="fw-bold font-monospace fs-5">₹349</span>
+              <a class="btn st-btn" href="https://wa.me/919823045190?text=Hi%2C%20I%20would%20like%20to%20order%3A%20Solo%20Slice%20%26%20Sip" target="_blank" rel="noopener">Order</a>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="col item combo">
+        <article class="card h-100 st-card">
+          <div class="card-body d-flex flex-column gap-2">
+            <div class="display-3 text-center">🥂</div>
+            <span class="badge text-bg-dark align-self-start border border-2 border-dark">Combo</span>
+            <h3 class="h5 card-title">Garlic Bread &amp; Fizzy Duo</h3>
+            <p class="card-text small flex-grow-1">Garlic bread with two fizzy drinks.</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="fw-bold font-monospace fs-5">₹229</span>
+              <a class="btn st-btn" href="https://wa.me/919823045190?text=Hi%2C%20I%20would%20like%20to%20order%3A%20Garlic%20Bread%20%26%20Fizzy%20Duo" target="_blank" rel="noopener">Order</a>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="col item combo">
+        <article class="card h-100 st-card">
+          <div class="card-body d-flex flex-column gap-2">
+            <div class="display-3 text-center">📦</div>
+            <span class="badge text-bg-dark align-self-start border border-2 border-dark">Combo</span>
+            <h3 class="h5 card-title">Duo Feast Box</h3>
+            <p class="card-text small flex-grow-1">2 pizzas + sides.</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="fw-bold font-monospace fs-5">₹799</span>
+              <a class="btn st-btn" href="https://wa.me/919823045190?text=Hi%2C%20I%20would%20like%20to%20order%3A%20Duo%20Feast%20Box" target="_blank" rel="noopener">Order</a>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="col item combo">
+        <article class="card h-100 st-card">
+          <div class="card-body d-flex flex-column gap-2">
+            <div class="display-3 text-center">🎉</div>
+            <span class="badge text-bg-dark align-self-start border border-2 border-dark">Combo</span>
+            <h3 class="h5 card-title">Family Party Platter</h3>
+            <p class="card-text small flex-grow-1">3 pizzas for the whole gang.</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="fw-bold font-monospace fs-5">₹1299</span>
+              <a class="btn st-btn" href="https://wa.me/919823045190?text=Hi%2C%20I%20would%20like%20to%20order%3A%20Family%20Party%20Platter" target="_blank" rel="noopener">Order</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+    <p class="promo fw-bold p-3 mt-4 mb-0">Promo codes: WEEKEND25 (25% off ₹699+) · BDAYTREAT (20% off) · LUNCH150 (₹150 off ₹449+) — mention the code when you order!</p>
+  </section>
+
+  <section id="gallery" class="py-4">
+    <h2 class="mb-3">Gallery</h2>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
+      <figure class="col"><div class="card st-card overflow-hidden h-100">
+        <div class="ratio ratio-4x3 d-flex align-items-center justify-content-center display-1" style="background:#F7C948">🍕</div>
+        <figcaption class="card-footer fw-bold border-top border-3 border-dark bg-transparent st-head">Fresh from the brick oven</figcaption></div></figure>
+      <figure class="col"><div class="card st-card overflow-hidden h-100">
+        <div class="ratio ratio-4x3 d-flex align-items-center justify-content-center display-1" style="background:#F4A261">🧀</div>
+        <figcaption class="card-footer fw-bold border-top border-3 border-dark bg-transparent st-head">Loaded with melty cheese</figcaption></div></figure>
+      <figure class="col"><div class="card st-card overflow-hidden h-100">
+        <div class="ratio ratio-4x3 d-flex align-items-center justify-content-center display-1" style="background:#E9C46A">🥖</div>
+        <figcaption class="card-footer fw-bold border-top border-3 border-dark bg-transparent st-head">Golden garlic breadsticks</figcaption></div></figure>
+      <figure class="col"><div class="card st-card overflow-hidden h-100">
+        <div class="ratio ratio-4x3 d-flex align-items-center justify-content-center display-1" style="background:#E76F51">🍗</div>
+        <figcaption class="card-footer fw-bold border-top border-3 border-dark bg-transparent st-head">Smoky BBQ chicken</figcaption></div></figure>
+    </div>
+  </section>
+
+  <section id="visit" class="py-4">
+    <h2 class="mb-3">Visit Us in Nagpur</h2>
+    <div class="st-card p-4 lh-lg">
+      📍 Plot 24, Near Traffic Park, WHC Road, Dharampeth, Nagpur 440010<br>
+      📞 <a href="tel:+917122548920">+91 712 254 8920</a> · WhatsApp: <a href="https://wa.me/919823045190">+91 98230 45190</a><br>
+      ⏰ Mon–Thu 12:00 PM – 10:30 PM · Fri–Sun 12:00 PM – 11:30 PM<br>
+      <a href="https://maps.google.com/?q=Dharampeth,+Nagpur" target="_blank" rel="noopener">🧭 Open in Google Maps</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer text-center p-4 mt-4">© 2026 S &amp; T (Slice and Topping) · Made with 🍅 &amp; 🧀</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
